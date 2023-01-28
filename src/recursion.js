@@ -76,10 +76,20 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
   var rangeArr = [];
-  if (x === y) {
+
+  if (x === y || Math.abs(x - y) === 1) {
+    return [];
+  }
+
+  if (Math.abs(x - y) === 1) {
     return x-1;
   }
-  rangeArr = rangeArr.concat(range(x+1, y));
+
+  if (x < y) {
+    rangeArr = rangeArr.concat(x+1, range(x+1, y));
+  } else {
+    rangeArr = rangeArr.concat(x-1, range(x-1, y));
+  }
   return rangeArr;
 };
 
